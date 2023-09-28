@@ -23,12 +23,23 @@ public class Menu {
         */
         
         // Print menu
+        System.out.println("");
+        System.out.println("==================");
+        System.out.println("===  M E N U   ===");
+        System.out.println("==================");
+
         for (MenuItem item: menuItems) {
-            System.out.println(item.number + ". " + item.text);
+            if (item.number != 0) {
+                System.out.println(item.number + ". " + item.text);
+            }
+            else {
+                System.out.println("------------------");
+            }
         }
+        System.out.println("------------------");
 
 // asi zbytečné        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your choice: ");
+        System.out.print("Enter your choice: ");
         String input = scanner.nextLine();
         
         int choice;
@@ -47,6 +58,7 @@ public class Menu {
         } catch (NumberFormatException e) {
             choice = 0;
         }
+        System.out.println("");
         
         return choice;
     }

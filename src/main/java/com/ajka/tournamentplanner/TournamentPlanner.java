@@ -11,14 +11,13 @@ package com.ajka.tournamentplanner;
 public class TournamentPlanner {
 
     public static void main(String[] args) {
+        
+        Teams cTeams = new Teams();
+//        TeamItem[] teams = new TeamItem[128];
+//        teams[0] = new TeamItem (1, "AJKA", "Ajka Software");
+        
+
         Menu menu = new Menu();
-        
-        int choice = 0;
-        
-        TeamItem[] teams = {
-            new TeamItem(1, "AJKA", "Ajka Software")
-        };
-        
         MenuItem[] menuItems = {
             new MenuItem(1, "Add team"),
             new MenuItem(2, "List teams"),
@@ -29,6 +28,7 @@ public class TournamentPlanner {
             new MenuItem(6, "Print table"),
             new MenuItem(9, "End of program")
         };
+        int choice = 0;
         
         // Main loop
         while (choice != 9) {
@@ -38,10 +38,13 @@ public class TournamentPlanner {
         
             switch (choice) {
                 case 1 -> {
+                    cTeams.addTeam();
                 }
                 case 2 -> {
+                    cTeams.listTeams();
                 }
                 case 3 -> {
+                    cTeams.deleteTeam();
                 }
                 case 4 -> {
                 }

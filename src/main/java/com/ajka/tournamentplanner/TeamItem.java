@@ -8,12 +8,10 @@ package com.ajka.tournamentplanner;
  *  Object for a Teams
  */
 public class TeamItem {
-    int number;
     String shortName;
     String teamName;
 
-    public TeamItem(int number, String shortName, String teamName) {
-        this.number = number;
+    public TeamItem(String shortName, String teamName) {
         this.shortName = shortName;
         this.teamName = teamName;
     }
