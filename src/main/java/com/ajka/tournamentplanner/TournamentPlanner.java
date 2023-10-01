@@ -6,7 +6,7 @@ package com.ajka.tournamentplanner;
 
 /**
  *
- * @author kucer
+ * Jaroslav Kucera
  */
 public class TournamentPlanner {
 
@@ -22,8 +22,8 @@ public class TournamentPlanner {
             new MenuItem(1, "Add team"),
             new MenuItem(2, "List teams"),
             new MenuItem(3, "Delete team"),
-            new MenuItem(0, "---------------"),
             new MenuItem(4, "Create schedule"),
+            new MenuItem(0, "---------------"),
             new MenuItem(5, "Match recording"),
             new MenuItem(6, "Print table"),
             new MenuItem(9, "End of program")
