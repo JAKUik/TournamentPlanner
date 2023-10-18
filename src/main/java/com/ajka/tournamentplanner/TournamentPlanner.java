@@ -1,20 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.ajka.tournamentplanner;
 
 /**
  *
- * Jaroslav Kucera
+ * @author Jaroslav Kučera
  */
+
 public class TournamentPlanner {
 
     public static void main(String[] args) {
         
         Teams cTeams = new Teams();
-//        TeamItem[] teams = new TeamItem[128];
-//        teams[0] = new TeamItem (1, "AJKA", "Ajka Software");
         
 
         MenuG menu = new MenuG();
@@ -32,19 +27,17 @@ public class TournamentPlanner {
         
         // Main loop
         while (choice != 9) {
-            choice = menu.getChoice(menuItems);
+            choice = menu.getMenuChoice(menuItems);
 
-        // Control print    System.out.println(choice);
-        
             switch (choice) {
                 case 1 -> {
-                    cTeams.addTeam();
+                    cTeams.addOneTeam();
                 }
                 case 2 -> {
-                    cTeams.listTeams();
+                    cTeams.showAllTeams();
                 }
                 case 3 -> {
-                    cTeams.deleteTeam();
+                    cTeams.deleteOneTeam();
                 }
                 case 4 -> {
                 }
@@ -53,12 +46,11 @@ public class TournamentPlanner {
                 case 6 -> {
                 }
 
-                default ->                     {
+                default -> {
                     {}
                     
                 }
             }
-            // AddTeam(teams);
-                    }
+        }
     }
 }

@@ -1,32 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.ajka.tournamentplanner;
 
 /**
  *
  * @author Jaroslav Kučera
  */
-import java.util.Scanner;
+
 import javax.swing.JOptionPane;
 
 public class Teams {
-    private final Scanner scanner;
     private final TeamItem[] teams;
     private final int maxTeams = 128;
     private int teamsNum = 0;   // Teams counter
 
     public Teams() {
-        this.scanner = new Scanner(System.in);
         this.teams = new TeamItem[this.maxTeams];
         // for testing only
         this.addNewRecord("AJK", "aJKa Software");
         this.addNewRecord("ABC", "Abeceda");
     }
         
-    // Add one team
-    public void addTeam() {
+    public void addOneTeam() {
         String inputShortName = "";
         while (true) {            
             inputShortName = JOptionPane.showInputDialog(null, null, 
@@ -60,24 +53,12 @@ public class Teams {
         }
     }
 
-    // Print all teams
-    public void listTeams() {
+    public void showAllTeams() {
         JOptionPane.showMessageDialog(null, listTeamsBuilder(), 
                 "TEAMS LIST", 1);
     }
     
-    public StringBuilder listTeamsBuilder() {
-        StringBuilder text = new StringBuilder();
-//        text.append("Teams list \n \n");
-        for (int i = 0; i < this.teamsNum; i++) {
-            text.append(oneTeamToString(i));
-
-        }
-        return text;
-    }
-
-    // Delete one team
-    public void deleteTeam() {
+    public void deleteOneTeam() {
         if (this.teamsNum == 0) {
             JOptionPane.showMessageDialog(null, 
                     "The team list is empty.");
@@ -86,7 +67,6 @@ public class Teams {
         StringBuilder text = listTeamsBuilder();
         String deleteName = JOptionPane.showInputDialog(null, text, 
                 "Entry short team name to delete", JOptionPane.QUESTION_MESSAGE);
-//        String deleteName = scanner.nextLine();
         int id = isShortName(deleteName);
         if (id == -1) {
             if (! deleteName.isEmpty()) {
@@ -119,7 +99,19 @@ public class Teams {
         }
         return -1;
     }
-    
+
+    /**
+     * Create and return list of all teams
+     */
+    public StringBuilder listTeamsBuilder() {
+        StringBuilder text = new StringBuilder();
+        for (int i = 0; i < this.teamsNum; i++) {
+            text.append(oneTeamToString(i));
+
+        }
+        return text;
+    }
+
     private String oneTeamToString(int teamId) {
         return this.teams[teamId].shortName + " - " 
                 + this.teams[teamId].teamName + "\n";
