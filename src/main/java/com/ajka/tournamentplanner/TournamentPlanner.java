@@ -17,13 +17,13 @@ public class TournamentPlanner {
 //        teams[0] = new TeamItem (1, "AJKA", "Ajka Software");
         
 
-        Menu menu = new Menu();
+        MenuG menu = new MenuG();
         MenuItem[] menuItems = {
             new MenuItem(1, "Add team"),
             new MenuItem(2, "List teams"),
             new MenuItem(3, "Delete team"),
             new MenuItem(4, "Create schedule"),
-            new MenuItem(0, "---------------"),
+            new MenuItem(0, ""),
             new MenuItem(5, "Match recording"),
             new MenuItem(6, "Print table"),
             new MenuItem(9, "End of program")

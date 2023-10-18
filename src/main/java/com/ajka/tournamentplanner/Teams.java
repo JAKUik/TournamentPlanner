@@ -9,6 +9,7 @@ package com.ajka.tournamentplanner;
  * @author Jaroslav Kučera
  */
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class Teams {
     private final Scanner scanner;
@@ -28,53 +29,70 @@ public class Teams {
     public void addTeam() {
         String inputShortName = "";
         while (true) {            
-            System.out.print("Enter the short team name (3 chars): ");
-            inputShortName = scanner.nextLine();
+            inputShortName = JOptionPane.showInputDialog(null, null, 
+                "Enter the short team name (3 chars): ", JOptionPane.QUESTION_MESSAGE);
 
             if (inputShortName.isEmpty()) {
-                System.out.println("The short name must be entered.");
+                JOptionPane.showMessageDialog(null, 
+                        "The short name must be entered.");
             }
             else {
                 inputShortName = inputShortName.substring(0, 3).toUpperCase();
                 if (isShortName(inputShortName) >= 0) {
-                    System.out.println("The short name '" + inputShortName + 
-                            "' already exists.");
+                    JOptionPane.showMessageDialog(null, 
+                            "The short name '" + inputShortName + 
+                                    "' already exists.");
                 }
                 else {break;}
             }
         }
-        System.out.print("Enter Full team name: ");
-        String inputFullName = scanner.nextLine();
+        String inputFullName = JOptionPane.showInputDialog(null, 
+                "Short name team: " + inputShortName, 
+                "Enter full team name: ", JOptionPane.QUESTION_MESSAGE);
 
         if (this.addNewRecord(inputShortName, inputFullName)) {
-            System.out.println("You add this new team: ");
-            printOneTeam(teamsNum - 1);
+            JOptionPane.showMessageDialog(null, "You add this new team: " + 
+                    oneTeamToString(teamsNum - 1));
         } 
         else {
-            System.out.println("The maximum number of teams has been entered.");
+            JOptionPane.showMessageDialog(null, 
+                    "The maximum number of teams has been entered.");
         }
     }
 
     // Print all teams
     public void listTeams() {
+        JOptionPane.showMessageDialog(null, listTeamsBuilder(), 
+                "TEAMS LIST", 1);
+    }
+    
+    public StringBuilder listTeamsBuilder() {
+        StringBuilder text = new StringBuilder();
+//        text.append("Teams list \n \n");
         for (int i = 0; i < this.teamsNum; i++) {
-            printOneTeam(i);
-//            System.out.println(this.teams[i].shortName + " - " +
-//                    this.teams[i].teamName);
+            text.append(oneTeamToString(i));
+
         }
+        return text;
     }
 
+    // Delete one team
     public void deleteTeam() {
         if (this.teamsNum == 0) {
-            System.out.println("The team list is empty.");
+            JOptionPane.showMessageDialog(null, 
+                    "The team list is empty.");
             return;
         }
-        listTeams();
-        System.out.println("Entry s short team name to delete");
-        String deleteName = scanner.nextLine();
+        StringBuilder text = listTeamsBuilder();
+        String deleteName = JOptionPane.showInputDialog(null, text, 
+                "Entry short team name to delete", JOptionPane.QUESTION_MESSAGE);
+//        String deleteName = scanner.nextLine();
         int id = isShortName(deleteName);
         if (id == -1) {
-            System.out.println("The team '" + deleteName + "' doesn't exist.");
+            if (! deleteName.isEmpty()) {
+                JOptionPane.showMessageDialog(null, 
+                        "The team '" + deleteName + "' doesn't exist.");
+            }
         }
         else {
             this.teams[id].shortName = "";
@@ -87,6 +105,8 @@ public class Teams {
                 this.teams[i].teamName = "";
             }
             this.teamsNum--;
+            JOptionPane.showMessageDialog(null, 
+                    "The team '" + deleteName + "' was deleted.");
         }
         
     }
@@ -100,9 +120,9 @@ public class Teams {
         return -1;
     }
     
-    private void printOneTeam(int teamId) {
-        System.out.println(this.teams[teamId].shortName + 
-                " - " + this.teams[teamId].teamName);
+    private String oneTeamToString(int teamId) {
+        return this.teams[teamId].shortName + " - " 
+                + this.teams[teamId].teamName + "\n";
     }
     
     private boolean addNewRecord(String shortName, String teamName) {
