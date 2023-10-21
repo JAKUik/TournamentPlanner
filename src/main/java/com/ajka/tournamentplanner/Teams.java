@@ -8,17 +8,23 @@ package com.ajka.tournamentplanner;
 import javax.swing.JOptionPane;
 
 public class Teams {
-    private final TeamItem[] teams;
-    private final int maxTeams = 128;
+    public final TeamItem[] teams;
+    private final int maxTeams = 16;
     private int teamsNum = 0;   // Teams counter
 
     public Teams() {
         this.teams = new TeamItem[this.maxTeams];
         // for testing only
         this.addNewRecord("AJK", "aJKa Software");
-        this.addNewRecord("ABC", "Abeceda");
+        this.addNewRecord("AAA", "Áčka");
+        this.addNewRecord("BBB", "Béčka");
+        this.addNewRecord("CCC", "Céčka");
     }
-        
+
+    public int getTeamsNum() {
+        return teamsNum;
+    }
+    
     public void addOneTeam() {
         String inputShortName = "";
         while (true) {            
